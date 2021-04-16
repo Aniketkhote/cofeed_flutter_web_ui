@@ -1,6 +1,7 @@
 import 'package:cofeed/constant.dart';
 import 'package:cofeed/widgets/username_text.dart';
 import 'package:flutter/material.dart';
+import 'package:customize/customize.dart';
 
 import '../label_text.dart';
 
@@ -16,7 +17,7 @@ class _LeftSidebarState extends State<LeftSidebar> {
     return SingleChildScrollView(
       child: Container(
         color: Colors.white10,
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 40),
+        padding: FxPadding.pxy(vertical: 30, horizontal: 40),
         width: 250,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,19 +33,12 @@ class _LeftSidebarState extends State<LeftSidebar> {
   }
 
   Widget logoWidget() {
-    return Text(
-      'CoFeed',
-      style: TextStyle(
-        color: kPrimaryColor.withOpacity(.8),
-        fontSize: 28,
-        fontWeight: FontWeight.w600,
-      ),
-    );
+    return Text('CoFeed').color(kPrimaryColor.withOpacity(.8)).bold.xl2;
   }
 
   Widget menuWidget() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 30),
+      padding: FxPadding.py32,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -95,26 +89,22 @@ class _LeftSidebarState extends State<LeftSidebar> {
   Widget appStore() {
     return Container(
       margin: EdgeInsets.only(top: 40, bottom: 20),
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: FxPadding.py20,
       height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
         color: kPrimaryColor.withOpacity(.5),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: FxRadius.radius10,
         border: Border.all(color: Colors.white, width: 2),
       ),
       child: Column(
         children: [
-          Text(
-            'Get Cofeed\non App Store',
-            style: TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+          Text('Get Cofeed\non App Store').color(Colors.white).xl.bold,
           Transform.rotate(
             angle: 50,
             child: Container(
               height: 100,
-              padding: EdgeInsets.only(top: 15),
+              padding: FxPadding.pt16,
               child: Image.network(
                   'https://cdn1.iconfinder.com/data/icons/computer-techologies-outline-free/128/ic_iphone_appstore-512.png'),
             ),
@@ -132,7 +122,7 @@ class _LeftSidebarState extends State<LeftSidebar> {
         });
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 15),
+        padding: FxPadding.pt16,
         child: Row(
           children: [
             Icon(

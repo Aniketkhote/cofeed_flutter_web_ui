@@ -3,6 +3,7 @@ import 'package:cofeed/models/Feed.dart';
 import 'package:cofeed/models/User.dart';
 import 'package:cofeed/widgets/label_text.dart';
 import 'package:flutter/material.dart';
+import 'package:customize/customize.dart';
 
 class ContentBody extends StatefulWidget {
   @override
@@ -38,7 +39,7 @@ class _ContentBodyState extends State<ContentBody> {
         itemCount: favUsers.length,
         itemBuilder: (context, index) {
           return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            padding: FxPadding.pxy(horizontal: 10, vertical: 20),
             child: Column(
               children: [
                 InkWell(
@@ -94,17 +95,14 @@ class _ContentBodyState extends State<ContentBody> {
 
   Widget divider() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Divider(
-        thickness: 1,
-        color: Colors.black12,
-      ),
+      padding: FxPadding.px20,
+      child: Divider(thickness: 1, color: Colors.black12),
     );
   }
 
   Widget tabs() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: FxPadding.p20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -112,18 +110,9 @@ class _ContentBodyState extends State<ContentBody> {
           Row(
             children: [
               singleTab(name: 'All', index: 0),
-              singleTab(
-                name: 'Following',
-                index: 1,
-              ),
-              singleTab(
-                name: 'Newest',
-                index: 2,
-              ),
-              singleTab(
-                name: 'Popular',
-                index: 3,
-              ),
+              singleTab(name: 'Following', index: 1),
+              singleTab(name: 'Newest', index: 2),
+              singleTab(name: 'Popular', index: 3),
             ],
           ),
         ],
@@ -139,7 +128,7 @@ class _ContentBodyState extends State<ContentBody> {
         });
       },
       child: Padding(
-        padding: const EdgeInsets.only(right: 10),
+        padding: FxPadding.pr12,
         child: Text(
           name,
           style: TextStyle(
@@ -155,7 +144,7 @@ class _ContentBodyState extends State<ContentBody> {
 
   Widget feed() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: FxPadding.px20,
       child: GridView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -168,8 +157,7 @@ class _ContentBodyState extends State<ContentBody> {
             children: [
               feedImage(index),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: FxPadding.pxy(horizontal: 15, vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -190,7 +178,7 @@ class _ContentBodyState extends State<ContentBody> {
       width: 300,
       height: 180,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: FxRadius.radius10,
         border: Border.all(color: Colors.white, width: 3),
       ),
       child: Image.network(

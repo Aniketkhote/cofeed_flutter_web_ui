@@ -3,6 +3,7 @@ import 'package:cofeed/models/User.dart';
 import 'package:cofeed/widgets/label_text.dart';
 import 'package:cofeed/widgets/username_text.dart';
 import 'package:flutter/material.dart';
+import 'package:customize/customize.dart';
 
 class RightSidebar extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _RightSidebarState extends State<RightSidebar> {
     return SingleChildScrollView(
       child: Container(
         width: 350,
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 25),
+        padding: FxPadding.pxy(horizontal: 30, vertical: 25),
         decoration: BoxDecoration(
           border: Border(
             left: BorderSide(color: Colors.black12, width: 1),
@@ -47,7 +48,7 @@ class _RightSidebarState extends State<RightSidebar> {
                 hintText: 'Search',
                 isDense: true,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: FxRadius.radius(allSide: 50),
                 ),
               ),
             ),
@@ -55,18 +56,12 @@ class _RightSidebarState extends State<RightSidebar> {
           SizedBox(width: 10),
           CircleAvatar(
             backgroundColor: Colors.blueAccent,
-            child: Icon(
-              Icons.notifications,
-              color: Colors.white,
-            ),
+            child: Icon(Icons.notifications, color: Colors.white),
           ),
           SizedBox(width: 10),
           CircleAvatar(
             backgroundColor: Colors.blueAccent,
-            child: Icon(
-              Icons.cloud_upload,
-              color: Colors.white,
-            ),
+            child: Icon(Icons.cloud_upload, color: Colors.white),
           ),
         ],
       ),
@@ -78,10 +73,7 @@ class _RightSidebarState extends State<RightSidebar> {
       padding: EdgeInsets.only(top: 30, bottom: 20),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(
-            color: Colors.black12,
-            width: 1,
-          ),
+          bottom: BorderSide(color: Colors.black12, width: 1),
         ),
       ),
       child: Column(
@@ -91,14 +83,7 @@ class _RightSidebarState extends State<RightSidebar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               LabelText(label: 'Suggestions For You'),
-              Text(
-                'See All',
-                style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-              ),
+              Text('See All').color(kPrimaryColor).bold.lg,
             ],
           ),
           ListView.builder(
@@ -120,7 +105,7 @@ class _RightSidebarState extends State<RightSidebar> {
 
   Widget latestPost() {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: FxPadding.pt20,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -133,24 +118,19 @@ class _RightSidebarState extends State<RightSidebar> {
 
   Widget singleLatestPost() {
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(top: 20),
-      decoration: BoxDecoration(
-        color: Colors.white30,
-        borderRadius: BorderRadius.circular(10),
-      ),
+      padding: FxPadding.p12,
+      margin: FxMargin.mt12,
+      decoration:
+          BoxDecoration(color: Colors.white30, borderRadius: FxRadius.radius10),
       child: Column(
         children: [
           Container(
             decoration: BoxDecoration(
               border: Border(
-                bottom: BorderSide(
-                  color: Colors.black12,
-                  width: 1,
-                ),
+                bottom: BorderSide(color: Colors.black12, width: 1),
               ),
             ),
-            padding: EdgeInsets.all(10),
+            padding: FxPadding.p12,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -168,13 +148,7 @@ class _RightSidebarState extends State<RightSidebar> {
               ],
             ),
           ),
-          Text(
-            'See All Posts',
-            style: TextStyle(
-                color: kPrimaryColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 16),
-          ),
+          Text('See All Posts').color(kPrimaryColor).lg.bold,
         ],
       ),
     );
@@ -185,7 +159,7 @@ class _RightSidebarState extends State<RightSidebar> {
       width: 130,
       height: 90,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: FxRadius.radius10,
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(
@@ -195,7 +169,7 @@ class _RightSidebarState extends State<RightSidebar> {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.lightGreenAccent[400].withOpacity(.2),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: FxRadius.radius10,
         ),
       ),
     );
@@ -203,52 +177,23 @@ class _RightSidebarState extends State<RightSidebar> {
 
   Widget links() {
     return Container(
-      padding: EdgeInsets.only(top: 30, bottom: 30),
+      padding: FxPadding.py32,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          InkWell(
-            onTap: () {},
-            child: Text(
-              'About',
-              style: TextStyle(
-                  color: Colors.blueGrey, fontWeight: FontWeight.w400),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              'Help',
-              style: TextStyle(
-                  color: Colors.blueGrey, fontWeight: FontWeight.w400),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              'Terms',
-              style: TextStyle(
-                  color: Colors.blueGrey, fontWeight: FontWeight.w400),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              'Popular',
-              style: TextStyle(
-                  color: Colors.blueGrey, fontWeight: FontWeight.w400),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              'Language',
-              style: TextStyle(
-                  color: Colors.blueGrey, fontWeight: FontWeight.w400),
-            ),
-          ),
+          buildLinkItem(link: 'About'),
+          buildLinkItem(link: 'Help'),
+          buildLinkItem(link: 'Popular'),
+          buildLinkItem(link: 'Language'),
         ],
       ),
+    );
+  }
+
+  InkWell buildLinkItem({String link, Function onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Text(link).normal.color(Colors.blueGrey),
     );
   }
 }
@@ -294,17 +239,24 @@ class _SuggestionItemState extends State<SuggestionItem> {
               ),
             ],
           ),
-          FlatButton(
+          ElevatedButton(
             onPressed: () {
               setState(() {
                 widget.isFollow = !widget.isFollow;
               });
             },
-            color: !widget.isFollow ? kPrimaryColor : null,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                  color: Colors.black12, width: 1, style: BorderStyle.solid),
-              borderRadius: BorderRadius.circular(5),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                  !widget.isFollow ? kPrimaryColor : null),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: Colors.black12,
+                      width: 1,
+                      style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
             ),
             child: Text(
               !widget.isFollow ? 'Follow' : 'Followed',
